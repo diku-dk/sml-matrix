@@ -1,0 +1,10 @@
+transpose: OK
+plus: OK
+sub: OK
+matmul: OK
+sub: OK
+inv1: OK
+inv2: OK
+unitmat3: OK
+solve: OK
+solve2: OK
