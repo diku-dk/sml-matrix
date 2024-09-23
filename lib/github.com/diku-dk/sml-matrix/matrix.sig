@@ -1,7 +1,13 @@
-(** Polymorphic matrices *)
+(** Operations on polymorphic matrices.
+
+The Matrix structure defines polymorphic, immutable matrices, implemented with a
+combination of pull-arrays and memoization.
+
+*)
 
 signature MATRIX = sig
   type 'a t
+
   val fromListList   : 'a list list -> 'a t
   val fromVectorList : 'a vector list -> 'a t
   val dimensions     : 'a t -> int * int
@@ -35,10 +41,21 @@ signature MATRIX = sig
   val iota           : int -> int vector
   val ones           : int -> int vector
   val diag           : 'a t -> 'a vector
-
-  (* [solve A b] solves Ax=b and returns x *)
   val solve          : real t -> real vector -> real vector
 
   val concatVertical : 'a t -> 'a t -> 'a t option
-
 end
+
+(**
+
+[type 'a t] Type of polymorphic matrices.
+
+[fromListList l] converts the regular list `l` of lists (lists of the same
+length) into a matrix. Raises Fail if the list is non-regular.
+
+[fromVectorList l] converts the regular list `l` of vectors (vectors of the same
+length) into a matrix. Raises Fail if the list is non-regular.
+
+[solve A b] solves Ax=b and returns x.
+
+*)
