@@ -96,3 +96,10 @@ fun mysolve m v = M.matvecmul (M.inv m) v
 
 val v3 = mysolve m5 v1
 val () = testM (fn s => s) "solve2" res (M.ppv 4 prReal v3)
+
+val m6 = M.fromListList [[4,17],[2,6]]
+
+val s = M.pp 2 Int.toString m6
+val () =
+    print ("pp: " ^ (if s = " 4 17\n 2  6" then "Ok\n"
+                     else "Err:\n" ^ s ^ "\n"))

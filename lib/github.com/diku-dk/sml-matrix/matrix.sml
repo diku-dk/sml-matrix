@@ -133,10 +133,10 @@ structure Matrix :> MATRIX = struct
   fun pp (n:int) (p: 'a -> string) (a:'a t) : string =
       let val {rows,cols,get} = map p a
           fun row r c acc = if c < 0 then acc
-                            else row r (c-1) (pad n (get (r,c))::" "::acc)
+                            else row r (c-1) (pad n (get (r,c))::acc)
           fun col r acc = if r < 0 then acc
-                          else col (r-1) (row r (cols-1) ("\n"::acc))
-      in String.concat (col (rows-1) nil)
+                          else col (r-1) (String.concatWith " " (row r (cols-1) nil) :: acc)
+      in String.concatWith "\n" (col (rows-1) nil)
       end
 
   fun row (r:int) ({rows,cols,get}:'a t) : 'a vector =
